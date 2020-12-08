@@ -1,0 +1,4 @@
+<?= $_head; ?>
+<?= $_menu ?>
+<?= $_content; ?>
+<?= $_footer; ?>
