@@ -74,8 +74,11 @@ if (!function_exists('hari_indo')) {
             case 'Friday':
                 return "Senin";
                 break;
-            case 'Monday':
-                return "Senin";
+            case 'Saturday':
+                return "Sabtu";
+                break;
+            case 'Sunday':
+                return "Minggu";
                 break;
         }
     }

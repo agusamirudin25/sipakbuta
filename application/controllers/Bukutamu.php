@@ -3,6 +3,14 @@
 class Bukutamu extends CI_Controller
 {
 
+    private $id_bukutamu;
+    private $id_agenda;
+    private $id_pengunjung;
+    private $pembahasan;
+    private $dokumentasi;
+    private $tanggal_dibuat;
+    private $dibuat_oleh;
+
     public function __construct()
     {
         parent::__construct();

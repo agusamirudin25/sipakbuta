@@ -5,11 +5,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Lokasi extends CI_Controller
 {
 
-    protected $id_lokasi;
-    protected $nama_lokasi;
-    protected $status;
-    protected $tanggal_dibuat;
-    protected $tanggal_diubah;
+    private $id_lokasi;
+    private $nama_lokasi;
+    private $status;
+    private $tanggal_dibuat;
+    private $dibuat_oleh;
 
     function __construct()
     {

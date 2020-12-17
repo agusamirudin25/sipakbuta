@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
-	public $nama_aplikasi;
-	public $deskripsi_aplikasi;
+	private $nama_aplikasi;
+	private $deskripsi_aplikasi;
 
 	function __construct()
 	{

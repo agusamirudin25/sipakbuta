@@ -4,14 +4,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pengunjung extends CI_Controller
 {
-    protected $id_pengunjung;
-    protected $nama;
-    protected $jabatan;
-    protected $instansi;
-    protected $no_hp;
-    protected $tanda_tangan;
-    protected $tanggal_dibuat;
-    protected $tanggal_diubah;
+    private $id_pengunjung;
+    private $nama;
+    private $jabatan;
+    private $instansi;
+    private $no_hp;
+    private $tanda_tangan;
+    private $tanggal_dibuat;
+    private $tanggal_diubah;
 
     function __construct()
     {

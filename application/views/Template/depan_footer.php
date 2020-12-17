@@ -27,7 +27,9 @@
 
 </div> <!-- .site-wrap -->
 
-<script src="<?= base_url() ?>assets/front-end/js/jquery-3.3.1.min.js"></script>
+
+</body>
+
 <script src="<?= base_url() ?>assets/front-end/js/jquery-ui.js"></script>
 <script src="<?= base_url() ?>assets/front-end/js/popper.min.js"></script>
 <script src="<?= base_url() ?>assets/front-end/js/bootstrap.min.js"></script>
@@ -39,8 +41,19 @@
 <script src="<?= base_url() ?>assets/front-end/js/jquery.sticky.js"></script>
 <script src="<?= base_url() ?>assets/front-end/js/isotope.pkgd.min.js"></script>
 <script src="<?= base_url() ?>assets/front-end/js/main.js"></script>
+<script src="<?= base_url() ?>assets/js/plugin/signaturepad/jquery.signature.js"></script>
 
-
-</body>
+<script>
+    $(document).ready(function() {
+        $('#defaultSignature').signature();
+        $('#defaultSignature').signature({
+            syncField: '#signatureJSON',
+            syncFormat: 'PNG'
+        });
+        $('#clearSignature').click(function() {
+            $('#defaultSignature').signature('clear');
+        });
+    })
+</script>
 
 </html>

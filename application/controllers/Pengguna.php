@@ -4,16 +4,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pengguna extends CI_Controller
 {
-
-    protected $nama_pengguna;
-    protected $nama_lengkap;
-    protected $jenis_kelamin;
-    protected $email;
-    protected $no_hp;
-    protected $jabatan;
-    protected $paraf = 'default.png';
-    protected $status;
-    protected $katasandi;
+    private $id_pengguna;
+    private $nama_pengguna;
+    private $nama_lengkap;
+    private $jenis_kelamin;
+    private $email;
+    private $no_hp;
+    private $jabatan;
+    private $paraf = 'default.png';
+    private $status;
+    private $katasandi;
+    private $tanggal_dibuat;
+    private $tanggal_diubah;
+    private $last_login;
 
     function __construct()
     {

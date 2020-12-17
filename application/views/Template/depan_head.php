@@ -17,7 +17,12 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/fonts/flaticon-covid/font/flaticon.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/aos.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/signaturepad/jquery.signature.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/style.css">
+    <!-- select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="<?= base_url() ?>assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">

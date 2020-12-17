@@ -7,21 +7,34 @@
             </div>
         </div>
         <div class="row">
-            <?php foreach ($agenda as $data) : ?>
+            <?php if ($agenda) : ?>
+                <?php foreach ($agenda as $data) : ?>
+                    <div class="col-lg-12 mb-4">
+                        <a href="<?= base_url('tambah-buku-tamu/' . enc($data->id_agenda)) ?>" class=" symptom d-flex">
+                            <div class="d-flex">
+                                <div class="img">
+                                    <img src="<?= base_url() ?>assets/front-end/images/e-sign.png" alt="Image" class="img-fluid">
+                                </div>
+                                <div class="text">
+                                    <h3><?= $data->hari . ', ' . tgl_indo($data->tanggal) ?></h3>
+                                    <p> <?= $data->nama_kegiatan ?>. </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
                 <div class="col-lg-12 mb-4">
-                    <a href="<?= base_url('tambah-buku-tamu/' . enc($data->id_agenda)) ?>" class=" symptom d-flex">
-                        <div class="d-flex">
-                            <div class="img">
-                                <img src="<?= base_url() ?>assets/front-end/images/e-sign.png" alt="Image" class="img-fluid">
-                            </div>
-                            <div class="text">
-                                <h3><?= $data->hari . ', ' . tgl_indo($data->tanggal) ?></h3>
-                                <p> <?= $data->nama_kegiatan ?>. </p>
-                            </div>
+                    <div class="d-flex symptom d-flex">
+                        <div class="img">
+                            <img src="<?= base_url() ?>assets/front-end/images/e-sign.png" alt="Image" class="img-fluid">
                         </div>
-                    </a>
+                        <div class="text text-center">
+                            <h3 class="mt-4">Tidak Ada Agenda Kegiatan hari ini</h3>
+                        </div>
+                    </div>
                 </div>
-            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
 
     </div>

@@ -2,6 +2,17 @@
 
 class Agenda extends CI_Controller
 {
+    private $id_agenda;
+    private $nama_kegiatan;
+    private $hari;
+    private $tanggal;
+    private $jam;
+    private $lokasi;
+    private $warna;
+    private $status;
+    private $tanggal_dibuat;
+    private $tanggal_diubah;
+    private $dibuat_oleh;
 
     public function __construct()
     {
