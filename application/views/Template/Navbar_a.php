@@ -33,7 +33,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
                         <li>
-                            <a class="dropdown-item" href="<?= base_url() ?>login/logout">Keluar</a>
+                            <a class="dropdown-item" href="<?= base_url() ?>login/logout">Logout</a>
                         </li>
                     </ul>
                 </li>

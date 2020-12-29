@@ -47,7 +47,8 @@ class Pengunjung extends CI_Controller
     public function prosesTambahPengunjung()
     {
         $input = $this->input->post();
-
+        var_dump($input['paraf']);
+        die;
         $base64_default = "iVBORw0KGgoAAAANSUhEUgAAAOwAAACaCAYAAACqqKTIAAADxElEQVR4Xu3TgQkAMAwCwXb/oS10i4fLBHLGu23HESCQELgGm+hJSAJfwGA9AoGQgMGGyhKVgMH6AQIhAYMNlSUqAYP1AwRCAgYbKktUAgbrBwiEBAw2VJaoBAzWDxAICRhsqCxRCRisHyAQEjDYUFmiEjBYP0AgJGCwobJEJWCwfoBASMBgQ2WJSsBg/QCBkIDBhsoSlYDB+gECIQGDDZUlKgGD9QMEQgIGGypLVAIG6wcIhAQMNlSWqAQM1g8QCAkYbKgsUQkYrB8gEBIw2FBZohIwWD9AICRgsKGyRCVgsH6AQEjAYENliUrAYP0AgZCAwYbKEpWAwfoBAiEBgw2VJSoBg/UDBEICBhsqS1QCBusHCIQEDDZUlqgEDNYPEAgJGGyoLFEJGKwfIBASMNhQWaISMFg/QCAkYLChskQlYLB+gEBIwGBDZYlKwGD9AIGQgMGGyhKVgMH6AQIhAYMNlSUqAYP1AwRCAgYbKktUAgbrBwiEBAw2VJaoBAzWDxAICRhsqCxRCRisHyAQEjDYUFmiEjBYP0AgJGCwobJEJWCwfoBASMBgQ2WJSsBg/QCBkIDBhsoSlYDB+gECIQGDDZUlKgGD9QMEQgIGGypLVAIG6wcIhAQMNlSWqAQM1g8QCAkYbKgsUQkYrB8gEBIw2FBZohIwWD9AICRgsKGyRCVgsH6AQEjAYENliUrAYP0AgZCAwYbKEpWAwfoBAiEBgw2VJSoBg/UDBEICBhsqS1QCBusHCIQEDDZUlqgEDNYPEAgJGGyoLFEJGKwfIBASMNhQWaISMFg/QCAkYLChskQlYLB+gEBIwGBDZYlKwGD9AIGQgMGGyhKVgMH6AQIhAYMNlSUqAYP1AwRCAgYbKktUAgbrBwiEBAw2VJaoBAzWDxAICRhsqCxRCRisHyAQEjDYUFmiEjBYP0AgJGCwobJEJWCwfoBASMBgQ2WJSsBg/QCBkIDBhsoSlYDB+gECIQGDDZUlKgGD9QMEQgIGGypLVAIG6wcIhAQMNlSWqAQM1g8QCAkYbKgsUQkYrB8gEBIw2FBZohIwWD9AICRgsKGyRCVgsH6AQEjAYENliUrAYP0AgZCAwYbKEpWAwfoBAiEBgw2VJSoBg/UDBEICBhsqS1QCBusHCIQEDDZUlqgEDNYPEAgJGGyoLFEJGKwfIBASMNhQWaISMFg/QCAkYLChskQlYLB+gEBIwGBDZYlKwGD9AIGQgMGGyhKVgMH6AQIhAYMNlSUqAYP1AwRCAgYbKktUAgbrBwiEBAw2VJaoBB7lXmZRz/obHAAAAABJRU5ErkJggg==";
         $paraf = str_replace("data:image/png;base64,", '', $input['paraf']);
         if ($paraf != $base64_default) {
@@ -67,12 +68,12 @@ class Pengunjung extends CI_Controller
         }
         $id_pengunjung_terakhir = $this->dataHandle->get_last_id('id_pengunjung', 'm_pengunjung');
         if ($id_pengunjung_terakhir) {
-            $nilai_kode = substr($id_pengunjung_terakhir['id_pengunjung'], 4);
+            $nilai_kode = substr($id_pengunjung_terakhir['id_pengunjung'], 2);
             $id_pengunjung = (int) $nilai_kode;
             $id_pengunjung = $id_pengunjung + 1;
             $id_pengunjung_otomatis = "PG" . str_pad($id_pengunjung, 3, "0", STR_PAD_LEFT);
         } else {
-            $id_pengunjung_otomatis = "PG-001";
+            $id_pengunjung_otomatis = "PG001";
         }
 
         $data = [

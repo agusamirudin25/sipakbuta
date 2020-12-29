@@ -32,6 +32,13 @@ $route['bukutamu'] = 'Bukutamu/lihatBukutamu';
 $route['tambah-bukutamu'] = 'Bukutamu/tambahBukutamu';
 $route['edit-bukutamu/(:any)'] = 'Bukutamu/editBukutamu/$1';
 $route['hb'] = 'Bukutamu/hapusBukutamu';
+$route['hapusfoto'] = 'Bukutamu/prosesEditBukutamu';
+
+// laporan
+$route['laporan'] = 'Laporan/lihatLaporan';
+$route['tambah-laporan'] = 'Laporan/tambahLaporan';
+$route['lihat-laporan/(:any)'] = 'Laporan/editLaporan/$1';
+$route['hlpr'] = 'Laporan/hapusLaporan';
 
 $route['rekap-apar'] = 'Admin/rekapBulananApar';
 $route['rekap-firealarm'] = 'Admin/rekapBulananFirealarm';

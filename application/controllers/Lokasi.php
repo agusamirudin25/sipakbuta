@@ -46,7 +46,7 @@ class Lokasi extends CI_Controller
         $input = $this->input->post();
         $id_lokasi_terakhir = $this->dataHandle->get_last_id('id_lokasi', 'm_lokasi');
         if ($id_lokasi_terakhir) {
-            $nilai_kode = substr($id_lokasi_terakhir['id_lokasi'], 3);
+            $nilai_kode = substr($id_lokasi_terakhir['id_lokasi'], 2);
             $id_lokasi = (int) $nilai_kode;
             $id_lokasi = $id_lokasi + 1;
             $id_lokasi_otomatis = "L" . str_pad($id_lokasi, 3, "0", STR_PAD_LEFT);

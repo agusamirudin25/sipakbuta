@@ -27,15 +27,11 @@ class Main extends CI_Controller
         $data['logo'] = $this->dataHandle->cek_konfigurasi('logo');
         $data['nama_tim'] = $this->dataHandle->cek_konfigurasi('nama_perusahaan');
         $data['deskripsi'] = $this->dataHandle->cek_konfigurasi('deskripsi_aplikasi');
-        $data['page'] = 'tambah-apar';
+        $data['page'] = 'tambah';
 
-        // $data['total_apar'] = $this->dataHandle->other_query("SELECT count(m_apar.nomor_apar) as total_apar from m_apar")->row();
-        // $data['total_fa'] = $this->dataHandle->other_query("SELECT count(m_firealarm.no_firealarm) as total_fa from m_firealarm")->row();
-        // $apar_belum_cek = $this->dataHandle->other_query("SELECT count(tr_pengecekan_apar.nomor_apar) as apar_belum FROM tr_pengecekan_apar WHERE MONTH(tr_pengecekan_apar.tanggal_pengisian) = MONTH(NOW())")->row();
-        // $fa_belum_cek = $this->dataHandle->other_query("SELECT count(tr_pengecekan_firealarm.no_firealarm) as fa_belum FROM tr_pengecekan_firealarm WHERE MONTH(tr_pengecekan_firealarm.tanggal_pengecekan) = MONTH(NOW())")->row();
-        // $data['apar_belum'] = $data['total_apar']->total_apar - $apar_belum_cek->apar_belum;
-        // $data['fa_belum'] = $data['total_fa']->total_fa - $fa_belum_cek->fa_belum;
-
+        $data['total_pengguna'] = $this->dataHandle->other_query("SELECT count(id_pengguna) as total_pengguna from m_pengguna")->row();
+        $data['total_agenda'] = $this->dataHandle->other_query("SELECT count(id_agenda) as total_agenda from m_agenda")->row();
+        $data['total_pengunjung'] = $this->dataHandle->other_query("SELECT count(id_pengunjung) as total_pengunjung from m_pengunjung")->row();
         date_default_timezone_set('Asia/Jakarta');
         $this->template->admin('main/index', $data);
     }

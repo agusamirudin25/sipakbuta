@@ -12,7 +12,7 @@
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
                             <?= $this->session->userdata('nama'); ?>
-                            <span class="user-level"><?= $this->session->userdata('bagian') ?></span>
+                            <span class="user-level"><?= $this->session->userdata('jabatan') == "OP" ? 'Operator' : 'Kepala Seksi' ?></span>
                             <span class="caret"></span>
                         </span>
                     </a>
@@ -22,7 +22,7 @@
                         <ul class="nav">
                             <li>
                                 <a href="<?= base_url() ?>login/logout">
-                                    <span class="link-collapse">Keluar</span>
+                                    <span class="link-collapse">Logout</span>
                                 </a>
                             </li>
                         </ul>
@@ -56,35 +56,46 @@
                                     <span class="sub-item">Pengguna</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="<?= base_url() ?>pengunjung">
-                                    <span class="sub-item">Pengunjung</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url() ?>lokasi">
-                                    <span class="sub-item">Lokasi</span>
-                                </a>
-                            </li>
+
+                            <?php if ($this->session->userdata('jabatan') == 'OP') : ?>
+                                <li>
+                                    <a href="<?= base_url() ?>pengunjung">
+                                        <span class="sub-item">Pengunjung</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url() ?>lokasi">
+                                        <span class="sub-item">Lokasi</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item <?= ($this->uri->segment(1) == 'agenda') ? 'active' : '' ?>">
-                    <a href="<?= base_url() ?>agenda">
-                        <i class="fas fa-book"></i>
-                        <p>Agenda Kegiatan</p>
-                    </a>
-                </li>
-                <li class="nav-item <?= ($this->uri->segment(1) == 'bukutamu') ? 'active' : '' ?>">
-                    <a href="<?= base_url() ?>bukutamu">
-                        <i class="fas fa-book"></i>
-                        <p>Buku Tamu</p>
-                    </a>
-                </li>
-                <li class="nav-item <?= ($this->uri->segment(1) == 'laporan') ? 'active' : '' ?>">
+                <?php if ($this->session->userdata('jabatan') == 'OP') : ?>
+                    <li class="nav-item <?= ($this->uri->segment(1) == 'agenda') ? 'active' : '' ?>">
+                        <a href="<?= base_url() ?>agenda">
+                            <i class="fas fa-book"></i>
+                            <p>Agenda Kegiatan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= ($this->uri->segment(1) == 'bukutamu') ? 'active' : '' ?>">
+                        <a href="<?= base_url() ?>bukutamu">
+                            <i class="fas fa-book"></i>
+                            <p>Buku Tamu</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <li class="nav-item <?= ($this->uri->segment(1) == 'laporan') || ($this->uri->segment(1) == 'tambah-laporan') ? 'active' : '' ?>">
                     <a href="<?= base_url() ?>laporan">
                         <i class="fas fa-window-restore"></i>
                         <p>Laporan</p>
+                    </a>
+                </li>
+                <li class="nav-item <?= ($this->uri->segment(1) == 'keluar') ? 'active' : '' ?>">
+                    <a href="<?= base_url() ?>login/logout">
+                        <i class="fas fa-power-off"></i>
+                        <p>Logout</p>
                     </a>
                 </li>
 

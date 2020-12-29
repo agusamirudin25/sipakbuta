@@ -21,8 +21,7 @@
 <!-- Moment JS -->
 <script src="<?= base_url() ?>assets/js/plugin/moment/moment.min.js"></script>
 
-<!-- Chart JS -->
-<script src="<?= base_url() ?>assets/js/plugin/chart.js/chart.min.js"></script>
+
 
 <!-- jQuery Sparkline -->
 <script src="<?= base_url() ?>assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>

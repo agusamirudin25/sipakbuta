@@ -22,7 +22,7 @@ class DataHandle extends CI_Model
 	}
 	public function cek_konfigurasi($key)
 	{
-		$t = "SELECT * FROM m_konfigurasi WHERE id_konfigurasi = 1";
+		$t = "SELECT * FROM m_main WHERE id_konfigurasi = 1";
 		$d = $this->db->query($t);
 		$r = $d->num_rows();
 		if ($r > 0) {

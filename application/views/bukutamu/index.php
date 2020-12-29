@@ -27,7 +27,7 @@
                         <td><?= $row->pembahasan ?></td>
                         <td class="text-center">
                             <a href="<?= base_url() ?>edit-bukutamu/<?= enc($row->id_bukutamu) ?>" class="btn btn-primary btn-xs" title="Edit"><i class="fa fa-pen"></i></a>
-                            <a href="#" class="btn btn-danger btn-xs" title="Hapus" onclick="delete_data('<?= enc($row->id_bukutamu) ?>', 'hp')"><i class="fa fa-trash"></i></a>
+                            <a href="#" class="btn btn-danger btn-xs" title="Hapus" onclick="delete_data('<?= enc($row->id_bukutamu) ?>', 'hb')"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

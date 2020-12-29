@@ -93,13 +93,7 @@ class Login extends CI_Controller
 							'nama' => $nama,
 							'jabatan' => $jabatan
 						);
-						// date_default_timezone_set('Asia/Jakarta');
-						//          $date = date('Y-m-d H:i:s');
-						//          $log = array(
-						//              'id_user' => $id_user,
-						//              'waktu' => $date
-						//          );
-						//          $this->DataHandle->insert('log', $log);
+
 						$data['page'] = 'main';
 						$this->session->set_userdata($data_session);
 					}
@@ -122,13 +116,7 @@ class Login extends CI_Controller
 								'nama' => $nama,
 								'jabatan' => $jabatan
 							);
-							// date_default_timezone_set('Asia/Jakarta');
-							//          $date = date('Y-m-d H:i:s');
-							//          $log = array(
-							//              'id_user' => $id_user,
-							//              'waktu' => $date
-							//          );
-							//          $this->DataHandle->insert('log', $log);
+
 							$data['page'] = 'main';
 							$this->session->set_userdata($data_session);
 						}

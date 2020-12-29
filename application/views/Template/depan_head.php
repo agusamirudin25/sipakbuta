@@ -7,15 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="<?= base_url() ?>assets/front-end/images/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/fonts/icomoon/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/jquery-ui.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/fonts/flaticon-covid/font/flaticon.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/aos.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/signaturepad/jquery.signature.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/front-end/css/style.css">

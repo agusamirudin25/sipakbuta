@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h4 class="page-title">Tambah Data Bukutamu</h4>
+    <h4 class="page-title">Edit Data Bukutamu</h4>
     <ul class="breadcrumbs">
         <li class="nav-home">
             <a href="<?= base_url() ?>">
@@ -16,7 +16,7 @@
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="#">Tambah Data Bukutamu</a>
+            <a href="#">Edit Data Bukutamu</a>
         </li>
     </ul>
 </div>
@@ -33,7 +33,7 @@
                         <select class="form-control input-pill" id="agenda" name="agenda" required>
                             <option value="">- Pilih Agenda -</option>
                             <?php foreach ($agenda as $row) : ?>
-                                <option value="<?= $row->id_agenda ?>"><?= $row->nama_kegiatan ?></option>
+                                <option <?= ($bukutamu->id_agenda == $row->id_agenda) ? 'selected' : null ?> value="<?= $row->id_agenda ?>"><?= $row->nama_kegiatan ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -41,13 +41,25 @@
                         <label for="id_pengunjung">Pengunjung</label>
                         <select class="form-control input-pill" id="pengunjung" name="pengunjung[]" required multiple="multiple">
                             <?php foreach ($pengunjung as $row) : ?>
-                                <option value="<?= $row->id_pengunjung ?>"><?= $row->nama ?></option>
+                                <option <?= in_array($row->id_pengunjung, json_decode($bukutamu->id_pengunjung)) ? 'selected' : null ?> value="<?= $row->id_pengunjung ?>"><?= $row->nama ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="pembahasan">Pembahasan</label>
-                        <textarea name="pembahasan" class="form-control input-pill" id="pembahasan" cols="30" rows="10"></textarea>
+                        <textarea name="pembahasan" class="form-control input-pill" id="pembahasan" cols="30" rows="10"><?= $bukutamu->pembahasan ?></textarea>
+                    </div>
+                    <div class="row ml-2 mt-2" id="foto">
+                        <?php foreach (json_decode($bukutamu->dokumentasi) as $dok) : ?>
+                            <div class="card col-md-4 card-post card-round ">
+                                <img class="card-img-top" src="<?= base_url('assets/images/foto/') . $dok ?>" alt="Card image cap">
+                                <div class="card-body">
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" onclick="delete_foto('<?= $dok . ',' . $this->uri->segment(2); ?>', 'Bukutamu/prosesEditBukutamu', '#foto')" class="btn btn-primary btn-rounded btn-sm">Hapus</a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="form-group">
                         <label for="dokumentasi">Dokumentasi <span class="text-warning"> (boleh lebih dari 1 dokumentasi)</span></label>
@@ -60,7 +72,6 @@
                     </button>
                     <a href="<?= base_url('bukutamu') ?>" class="btn btn-danger">Kembali</a>
                 </div>
-
         </div>
         </form>
     </div>
@@ -77,8 +88,9 @@
             e.preventDefault();
             var data = new FormData(this);
             data.append('pembahasan', CKEDITOR.instances['pembahasan'].getData());
+            data.append('type', 'edit');
             $.ajax({
-                url: '<?= site_url(); ?>bukutamu/simpanBukutamu',
+                url: '<?= site_url('Bukutamu/prosesEditBukutamu/' . enc($bukutamu->id_bukutamu)); ?>',
                 type: "post",
                 data: data,
                 processData: false,
@@ -96,4 +108,31 @@
             });
         });
     });
+
+    function delete_foto(id, ajax, obj) {
+        Swal.fire({
+            title: "<?= $title; ?>",
+            text: "Apakah Anda Yakin ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.value) {
+                var string = 'id=' + id + '&type=foto';
+                $.ajax({
+                    type: 'POST',
+                    url: "<?= site_url() ?>" + ajax,
+                    data: string,
+                    cache: false,
+                    dataType: 'html',
+                    success: function(data) {
+                        $('#foto').html(data);
+                    }
+                });
+
+            }
+        })
+    }
 </script>

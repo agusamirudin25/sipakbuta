@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h4 class="page-title">Tambah Data Bukutamu</h4>
+    <h4 class="page-title">Tambah Laporan</h4>
     <ul class="breadcrumbs">
         <li class="nav-home">
             <a href="<?= base_url() ?>">
@@ -10,13 +10,13 @@
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="<?= base_url('bukutamu') ?>">Bukutamu</a>
+            <a href="<?= base_url('laporan') ?>">Laporan</a>
         </li>
         <li class="separator">
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="#">Tambah Data Bukutamu</a>
+            <a href="#">Tambah Laporan</a>
         </li>
     </ul>
 </div>
@@ -24,35 +24,40 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Data Bukutamu</div>
+                <div class="card-title">Laporan</div>
             </div>
             <form method="post" autocomplete="off" id="submit" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="agenda">Nama Kegiatan</label>
-                        <select class="form-control input-pill" id="agenda" name="agenda" required>
-                            <option value="">- Pilih Agenda -</option>
-                            <?php foreach ($agenda as $row) : ?>
-                                <option value="<?= $row->id_agenda ?>"><?= $row->nama_kegiatan ?></option>
-                            <?php endforeach; ?>
+                        <label for="bulan">Bulan</label>
+                        <select class="form-control input-pill" id="bulan" name="bulan" required>
+                            <option value="">- Pilih Bulan -</option>
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="id_pengunjung">Pengunjung</label>
-                        <select class="form-control input-pill" id="pengunjung" name="pengunjung[]" required multiple="multiple">
-                            <?php foreach ($pengunjung as $row) : ?>
-                                <option value="<?= $row->id_pengunjung ?>"><?= $row->nama ?></option>
-                            <?php endforeach; ?>
+                        <label for="tahun">Tahun</label>
+                        <select class="form-control input-pill" id="tahun" name="tahun" required>
+                            <option value="">- Pilih Tahun -</option>
+                            <?php $tahun_ini = date("Y");
+                            $akhir = 1990;
+                            for ($i = $tahun_ini; $i >= $akhir; $i--) : ?>
+                                <option value="<?= $i; ?>"><?= $i; ?></option>
+                            <?php endfor; ?>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="pembahasan">Pembahasan</label>
-                        <textarea name="pembahasan" class="form-control input-pill" id="pembahasan" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="dokumentasi">Dokumentasi <span class="text-warning"> (boleh lebih dari 1 dokumentasi)</span></label>
-                        <input type="file" name="dokumentasi[]" class="dropify" data-height="200" accept="image/*" data-allowed-file-extensions="jpg png jpeg" multiple="multiple">
-                    </div>
+
                 </div>
                 <div class="card-action">
                     <button class="btn btn-success" type="submit" id="simpan">
@@ -69,14 +74,12 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('pembahasan');
     $(document).ready(function() {
-        $('#agenda').select2();
-        $('#pengunjung').select2();
+        $('#bulan').select2();
+        $('#tahun').select2();
         $('#submit').submit(function(e) {
             e.preventDefault();
             var data = new FormData(this);
-            data.append('pembahasan', CKEDITOR.instances['pembahasan'].getData());
             $.ajax({
                 url: '<?= site_url(); ?>bukutamu/simpanBukutamu',
                 type: "post",

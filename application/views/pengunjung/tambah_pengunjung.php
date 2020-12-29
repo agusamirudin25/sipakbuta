@@ -40,7 +40,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Data Pengguna</div>
+                <div class="card-title">Data Pengunjung</div>
             </div>
             <form method="post" autocomplete="off" id="submit">
                 <textarea id="signatureJSON" rows="5" cols="30" readonly class="ui-state-active" style="display:none;" name="paraf"></textarea>

@@ -8,15 +8,15 @@
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <div class="card">
+                <div class="card" style="box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);">
                     <div class="card-header">
                         <div class="card-title">Form Tambah Tamu</div>
                     </div>
-                    <form action="" method="post" id="submit">
+                    <form method="post" id="submit" autocomplete="off">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="nama">Nama Pengunjung</label>
-                                <select class="form-control input-pill" id="pengunjung" name="pengunjung">
+                                <select required class="form-control input-pill" id="pengunjung" name="pengunjung" style="width: 100%">>
                                     <option value="">-Pilih Pengunjung-</option>
                                     <?php foreach ($pengunjung as $row) : ?>
                                         <option value="<?= $row->id_pengunjung ?>"><?= $row->nama ?></option>
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="card-action p-2" style="text-align:right;">
-                            <input type="hidden" id="id_bukutamu" name="id_bukutamu" value="<?= $this->uri->segment(2) ?>">
+                            <input type="hidden" id="id_agenda" name="id_agenda" value="<?= $this->uri->segment(2) ?>">
                             <a href="<?= base_url('buku-tamu') ?>" class="btn btn-danger">Kembali</a>
                             <button class="btn btn-sm btn-success" type="submit" id="simpan" style="color:white;">
                                 Simpan
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card mt-1">
+                <div class="card mt-1" style="box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);">
                     <div class="card-header">
                         <div class="card-title">Data Tamu</div>
                     </div>
@@ -78,9 +78,13 @@
 </div>
 <script src="<?= base_url() ?>assets/js/core/jquery.3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+<!-- Sweet Alert -->
+<script src="<?= base_url(); ?>assets/login/js/sweetalert2.all.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#pengunjung').select2();
+        $('#pengunjung').select2({
+            width: 'resolve'
+        });
         $("#no_hp").keypress(function(e) {
             var keyCode = e.keyCode || e.which;
             var regex = /^[0-9\s]+$/;
@@ -99,6 +103,7 @@
 
         $('#submit').submit(function(e) {
             e.preventDefault();
+            _validasi();
             $.ajax({
                 url: '<?= site_url(); ?>beranda/prosesTambahTamu',
                 type: "post",
@@ -110,7 +115,9 @@
                 dataType: "json",
                 success: function(response) {
                     if (response.status == 1) {
-                        success_alert(response.title, response.msg, response.page);
+                        success_alert(response.title, response.msg);
+                        load_data();
+                        _clear();
                     } else {
                         error_alert(response.title, response.msg);
                     }
@@ -121,7 +128,7 @@
     });
 
     function load_data() {
-        let id = $('#id_bukutamu').val();
+        let id = $('#id_agenda').val();
         let string = 'id=' + id;
         $.ajax({
             url: '<?= site_url(); ?>beranda/getTamu',
@@ -131,6 +138,9 @@
             success: function(response) {
                 let jml = response['total'];
                 let res = response['data'];
+                if (res == '-') {
+                    window.location.href = "<?= base_url('404_override') ?>";
+                }
 
                 function myFunction(item, index) {
                     html += `<li>${item.nama}</li>`;
@@ -139,13 +149,74 @@
                 var html = '';
                 if (jml != 0) {
                     res.forEach(myFunction);
+                    $('#pengunjung').html(response.html);
                 } else {
                     html += '- Belum ada tamu -';
                 }
-
-
                 $('#tamu').html(html);
             }
+        })
+
+    }
+
+    function _validasi() {
+        let pengunjung = $('#pengunjung');
+        let nama_pengunjung = $('#nama_pengunjung');
+        let jabatan = $('#jabatan');
+        let instansi = $('#instansi');
+        let no_hp = $('#no_hp');
+        if (pengunjung.val() == '-') {
+            if (nama_pengunjung.val() == '') {
+                nama_pengunjung.focus();
+                error_alert('Error', 'Nama pengunjung tidak boleh kosong');
+                return false();
+            }
+            if (jabatan.val() == '') {
+                jabatan.focus();
+                error_alert('Error', 'Jabatan tidak boleh kosong');
+                return false();
+            }
+            if (instansi.val() == '') {
+                instansi.focus();
+                error_alert('Error', 'Instansi tidak boleh kosong');
+                return false();
+            }
+            if (no_hp.val() == '') {
+                no_hp.focus();
+                error_alert('Error', 'No. HP tidak boleh kosong');
+                return false();
+            }
+        }
+        return false;
+    }
+
+    function _clear() {
+        $('#submit').each(function() {
+            this.reset();
+        });
+        $('#defaultSignature').signature('clear');
+        $('#pengunjung').val('');
+        $('#pengunjung').trigger('change');
+    }
+
+    function error_alert(title, msg) {
+        Swal.fire({
+            icon: 'error',
+            title: title,
+            text: msg,
+            footer: 'SIPAKBUTA'
+        })
+    }
+
+    function success_alert(title, msg) {
+        Swal.fire({
+            icon: 'success',
+            title: title,
+            text: msg,
+            timer: 1500,
+            footer: 'SIPAKBUTA',
+            showCancelButton: false,
+            showConfirmButton: false
         })
     }
 </script>
