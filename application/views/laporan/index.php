@@ -24,7 +24,7 @@
                         <td><?= tgl_indo($row->tanggal_dibuat) ?></td>
                         <td><?= $row->nama_lengkap ?></td>
                         <td class="text-center">
-                            <a href="<?= base_url() ?>lihat-laporan/<?= enc($row->id_laporan) ?>" class="btn btn-primary btn-xs" title="Lihat"><i class="fa fa-eye"></i></a>
+                            <a href="<?= base_url() ?>assets/images/laporan/<?= $row->nama . ".pdf" ?>" class="btn btn-primary btn-xs" title="Lihat" target="_blank"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
