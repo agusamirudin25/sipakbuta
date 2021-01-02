@@ -126,8 +126,9 @@ class Laporan extends CI_Controller
             'nama' => $nama_file,
             'dibuat_oleh' => $this->session->userdata('id_pengguna')
         ];
+        $this->dataHandle->insert('tr_laporan', $data);
         $this->load->library('ciqrcode');
-        $params['data'] =  base_url() . "assets/images/qrcode/" . $nama_file . ".png";
+        $params['data'] =  base_url() . "assets/images/laporan/" . $nama_file . ".pdf";
         $params['level'] = 'H';
         $params['size'] = 10;
         $params['savename'] = FCPATH . "/assets/images/qrcode/" . $nama_file . ".png";
@@ -198,7 +199,7 @@ class Laporan extends CI_Controller
             $pdf->Image(FCPATH . "/assets/images/qrcode/" . $nama_file . '.png', 7, 325, 20);
             $pdf->SetLeftMargin(15);
         }
-        $pdfname = FCPATH . $nama_file;
+        $pdfname = FCPATH . "assets/images/laporan/" . $nama_file;
         $pdf->Output('F', $pdfname . '.pdf', true);
         $pdf->Output('', $pdfname . '.pdf', false);
     }
