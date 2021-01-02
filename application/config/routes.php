@@ -40,7 +40,4 @@ $route['tambah-laporan'] = 'Laporan/tambahLaporan';
 $route['lihat-laporan/(:any)'] = 'Laporan/editLaporan/$1';
 $route['hlpr'] = 'Laporan/hapusLaporan';
 
-$route['rekap-apar'] = 'Admin/rekapBulananApar';
-$route['rekap-firealarm'] = 'Admin/rekapBulananFirealarm';
-$route['excel/(:num)/(:num)/(:num)'] = 'Admin/eksporExcel/$1/$2/$3';
-$route['pdf/(:num)/(:num)/(:num)'] = 'Admin/eksporPdf/$1/$2/$3';
+$route['pdf/(:num)/(:num)'] = 'Laporan/exportPdf/$1/$2';

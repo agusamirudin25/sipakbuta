@@ -191,6 +191,10 @@ class Bukutamu extends CI_Controller
             ];
             $dokumentasi = $this->dataHandle->getAllWhere('tr_bukutamu', 'id_agenda, dokumentasi', $where)->row();
             $arr_dokumentasi = (array) json_decode($dokumentasi->dokumentasi);
+            if (count($arr_dokumentasi) == 0) {
+                $this->dataHandle->edit('tr_bukutamu', ['dokumentasi' => ''], $where);
+                $arr_dokumentasi = [];
+            }
 
             $nama_foto = '';
             $nama_fotos = [];
@@ -228,8 +232,8 @@ class Bukutamu extends CI_Controller
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
                     }
-                    array_push($nama_fotos, $nama_foto);
-                    array_push($arr_dokumentasi, $nama_fotos);
+                    // array_push($nama_fotos, $nama_foto);
+                    array_push($arr_dokumentasi, $nama_foto);
                 }
             }
             $data = [

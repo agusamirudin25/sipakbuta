@@ -87,12 +87,63 @@
             datasets: [{
                 label: 'TOTAL AGENDA',
                 backgroundColor: '#28a745',
+                pointBorderColor: "#FFF",
+                pointBackgroundColor: "#1d7af3",
+                pointBorderWidth: 2,
+                pointHoverRadius: 4,
+                pointHoverBorderWidth: 1,
+                pointRadius: 4,
+                backgroundColor: 'transparent',
+                fill: true,
+                borderWidth: 2,
                 fill: false,
                 borderColor: '#28a745',
-                data: [0, 0, 0, 0, 0, 13, 29, 18, 18, 24, 15, 10]
+                data: <?= $grafik; ?>
             }]
         },
 
-        options: {}
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 10,
+                    fontColor: '#1d7af3',
+                }
+            },
+            tooltips: {
+                bodySpacing: 4,
+                mode: "nearest",
+                intersect: 0,
+                position: "nearest",
+                xPadding: 10,
+                yPadding: 10,
+                caretPadding: 10
+            },
+            layout: {
+                padding: {
+                    left: 15,
+                    right: 15,
+                    top: 15,
+                    bottom: 15
+                }
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 40
+                    }
+                }]
+            }
+        }
     });
 </script>
