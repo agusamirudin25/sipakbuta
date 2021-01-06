@@ -70,22 +70,32 @@ class Pengguna extends CI_Controller
         } else {
             $paraf_file = 'default.png';
         }
+
+        $this->nama_pengguna    = $input['username'];
+        $this->nama_lengkap     = $input['nama'];
+        $this->jenis_kelamin    = $input['jenis_kelamin'];
+        $this->email            = $input['email'];
+        $this->no_hp            = $input['no_hp'];
+        $this->status           = 1;
+        $this->jabatan          = $input['jabatan'];
+        $this->katasandi        = md5($input['katasandi']);
+
         $data = [
-            'nama_pengguna' => $input['username'],
-            'nama_lengkap' => $input['nama'],
-            'jenis_kelamin' => $input['jenis_kelamin'],
-            'email' => $input['email'],
-            'no_hp' => $input['no_hp'],
-            'jabatan' => $input['jabatan'],
-            'katasandi' => md5($input['katasandi']),
-            'status' => 1,
+            'nama_pengguna' => $this->nama_pengguna,
+            'nama_lengkap' => $this->nama_lengkap,
+            'jenis_kelamin' => $this->jenis_kelamin,
+            'email' => $this->email,
+            'no_hp' => $this->no_hp,
+            'jabatan' => $this->jabatan,
+            'katasandi' => $this->katasandi,
+            'status' => $this->status,
             'paraf' => $paraf_file
         ];
         $where_username = [
-            'nama_pengguna' => $input['username']
+            'nama_pengguna' => $this->nama_pengguna
         ];
         $where_email = [
-            'email' => $input['email']
+            'email' => $this->email
         ];
         if ($this->dataHandle->get('m_pengguna', $where_username)->num_rows() == 0) {
             if ($this->dataHandle->get('m_pengguna', $where_email)->num_rows() == 0) {

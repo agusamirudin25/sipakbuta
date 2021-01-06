@@ -121,12 +121,15 @@ class Laporan extends CI_Controller
             $id_laporan_otomatis = "LAP001";
         }
         $nama_file = "Laporan-Agenda-" . bulan($bulan) . '-' . $tahun;
+        $query = $this->dataHandle->get('tr_laporan', ['nama' => $nama_file])->row();
         $data = [
             'id_laporan' => $id_laporan_otomatis,
             'nama' => $nama_file,
             'dibuat_oleh' => $this->session->userdata('id_pengguna')
         ];
-        $this->dataHandle->insert('tr_laporan', $data);
+        if (!$query) {
+            $this->dataHandle->insert('tr_laporan', $data);
+        }
         $this->load->library('ciqrcode');
         $params['data'] =  base_url() . "assets/images/laporan/" . $nama_file . ".pdf";
         $params['level'] = 'H';

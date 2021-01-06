@@ -32,22 +32,22 @@ class Main extends CI_Controller
         $data['total_agenda'] = $this->dataHandle->other_query("SELECT count(id_agenda) as total_agenda from m_agenda")->row();
         $data['total_pengunjung'] = $this->dataHandle->other_query("SELECT count(id_pengunjung) as total_pengunjung from m_pengunjung")->row();
         date_default_timezone_set('Asia/Jakarta');
+        $tahun_ini = date('Y');
         $grafik = $this->dataHandle->other_query("SELECT
-        SUM(IF(MONTH (tanggal) = '1', 1, 0 )) AS jan,
-        SUM(IF(MONTH (tanggal) = '2', 1, 0 )) AS feb,
-        SUM(IF(MONTH (tanggal) = '3', 1, 0 )) AS mar,
-        SUM(IF(MONTH (tanggal) = '4', 1, 0 )) AS apr,
-        SUM(IF(MONTH (tanggal) = '5', 1, 0 )) AS mei,
-        SUM(IF(MONTH (tanggal) = '6', 1, 0 )) AS jun,
-        SUM(IF(MONTH (tanggal) = '7', 1, 0 )) AS jul,
-        SUM(IF(MONTH (tanggal) = '8', 1, 0 )) AS aug,
-        SUM(IF(MONTH (tanggal) = '9', 1, 0 )) AS sep,
-        SUM(IF(MONTH (tanggal) = '10', 1, 0 )) AS okt,
-        SUM(IF(MONTH (tanggal) = '11', 1, 0 )) AS nov,
-        SUM(IF(MONTH (tanggal) = '12', 1, 0 )) AS des
+        SUM(IF(MONTH (tanggal) = '1' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS jan,
+        SUM(IF(MONTH (tanggal) = '2' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS feb,
+        SUM(IF(MONTH (tanggal) = '3' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS mar,
+        SUM(IF(MONTH (tanggal) = '4' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS apr,
+        SUM(IF(MONTH (tanggal) = '5' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS mei,
+        SUM(IF(MONTH (tanggal) = '6' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS jun,
+        SUM(IF(MONTH (tanggal) = '7' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS jul,
+        SUM(IF(MONTH (tanggal) = '8' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS aug,
+        SUM(IF(MONTH (tanggal) = '9' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS sep,
+        SUM(IF(MONTH (tanggal) = '10' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS okt,
+        SUM(IF(MONTH (tanggal) = '11' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS nov,
+        SUM(IF(MONTH (tanggal) = '12' AND YEAR(tanggal) = '$tahun_ini', 1, 0 )) AS des
         FROM m_agenda")->result();
-        // var_dump($grafik);
-        // die;
+
         $json = "[";
         foreach ($grafik as $g) {
             $json .= $g->jan . ', ';
@@ -73,7 +73,7 @@ class Main extends CI_Controller
         $data['logo'] = $this->dataHandle->cek_konfigurasi('logo');
         $data['nama_tim'] = $this->dataHandle->cek_konfigurasi('nama_perusahaan');
         $data['deskripsi'] = $this->dataHandle->cek_konfigurasi('deskripsi_aplikasi');
-        $data['page'] = 'tambah-apar';
+        $data['page'] = 'tambah';
         $data['konfigurasi'] = $this->dataHandle->cek_konfigurasi('all');
         $this->template->admin('main/konfigurasi', $data);
     }
@@ -101,28 +101,38 @@ class Main extends CI_Controller
             $this->image_lib->resize();
 
             $input = $this->input->post();
-            $logo = $data['file_name'];
+            $this->id_konfigurasi = 1;
+            $this->logo = $data['file_name'];
+            $this->nama_perusahaan  = $input['nama_perusahaan'];
+            $this->nama_aplikasi    = $input['nama_aplikasi'];
+            $this->deskripsi_aplikasi = $input['deskripsi'];
+            $this->alamat = $input['alamat'];
             $data =
                 [
-                    'nama_perusahaan' => $input['nama_perusahaan'],
-                    'nama_aplikasi' => $input['nama_aplikasi'],
-                    'deskripsi_aplikasi' => $input['deskripsi'],
-                    'logo' => $logo,
-                    'alamat' => $input['alamat']
+                    'nama_perusahaan' => $this->nama_perusahaan,
+                    'nama_aplikasi' => $this->nama_aplikasi,
+                    'deskripsi_aplikasi' => $this->deskripsi_aplikasi,
+                    'logo' => $this->logo,
+                    'alamat' => $this->alamat
                 ];
-            $where = ['id_konfigurasi' => 1];
-            $result = $this->dataHandle->edit('m_konfigurasi', $data, $where);
+            $where = ['id_konfigurasi' => $this->id_konfigurasi];
+            $result = $this->dataHandle->edit('m_main', $data, $where);
         } else {
             $input = $this->input->post();
+            $this->id_konfigurasi = 1;
+            $this->nama_perusahaan  = $input['nama_perusahaan'];
+            $this->nama_aplikasi    = $input['nama_aplikasi'];
+            $this->deskripsi_aplikasi = $input['deskripsi'];
+            $this->alamat = $input['alamat'];
             $data =
                 [
-                    'nama_perusahaan' => $input['nama_perusahaan'],
-                    'nama_aplikasi' => $input['nama_aplikasi'],
-                    'deskripsi_aplikasi' => $input['deskripsi'],
-                    'alamat' => $input['alamat']
+                    'nama_perusahaan' => $this->nama_perusahaan,
+                    'nama_aplikasi' => $this->nama_aplikasi,
+                    'deskripsi_aplikasi' => $this->deskripsi_aplikasi,
+                    'alamat' => $this->alamat
                 ];
-            $where = ['id_konfigurasi' => 1];
-            $result = $this->dataHandle->edit('m_konfigurasi', $data, $where);
+            $where = ['id_konfigurasi' => $this->id_konfigurasi];
+            $result = $this->dataHandle->edit('m_main', $data, $where);
         }
 
         $response = [];

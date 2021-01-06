@@ -26,7 +26,7 @@
             <div class="card-header">
                 <div class="card-title">Laporan</div>
             </div>
-            <form method="post" autocomplete="off" id="submit" enctype="multipart/form-data">
+            <form method="post" autocomplete="off" id="submit">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 form-group">
