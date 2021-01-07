@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 mr-auto text-center text-lg-left">
-                <span class="d-block subheading">SIPAKBUTA</span>
+                <span class="d-block subheading">AGENTAKUTA</span>
                 <h1 class="heading mb-3">Aplikasi Pencatatan Agenda Kegiatan dan Buku Tamu</h1>
-                <p class="mb-5">SIPAKBUTA merupakan aplikasi yang digunakan untuk pencatatan agenda kegiatan dan buku tamu pada <i>command center</i> sebagai syarat untuk memenuhi tugas magang.</p>
-                <p class="mb-4"><a href="#fitur" class="btn btn-primary">Fitur Sipakbuta</a></p>
+                <p class="mb-5">AGENTAKUTA merupakan aplikasi yang digunakan untuk pencatatan agenda kegiatan dan buku tamu pada <i>command center</i> sebagai syarat untuk memenuhi tugas magang.</p>
+                <p class="mb-4"><a href="#fitur" class="btn btn-primary">Fitur AGENTAKUTA</a></p>
             </div>
             <div class="col-lg-6">
                 <figure class="illustration">
@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-7 mx-auto text-center">
-                <h2 class="mb-4 section-heading">FITUR SIPAKBUTA</h2>
+                <h2 class="mb-4 section-heading">FITUR AGENTAKUTA</h2>
             </div>
         </div>
         <div class="row">

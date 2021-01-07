@@ -4,7 +4,7 @@
             <div class="col-6 col-xl-2">
                 <div class="mb-0 site-logo">
                     <a href="<?= base_url() ?>" class="mb-0">
-                        <img src="<?= base_url() ?>assets/front-end/images/logo-magang.png" alt="logo" class="logo">
+                        <img src="<?= base_url() ?>assets/front-end/images/logo-magang-new.png" alt="logo" class="logo">
                     </a>
                 </div>
             </div>

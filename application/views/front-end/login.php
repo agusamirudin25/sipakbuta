@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Sipakbuta &mdash;</title>
+    <title>AGENTAKUTA &mdash;</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="<?= base_url() ?>assets/front-end/images/favicon.png" type="image/x-icon">
@@ -176,7 +176,7 @@
                 title: title,
                 text: msg,
                 timer: 1500,
-                footer: 'SIPAKBUTA',
+                footer: 'AGENTAKUTA',
                 showCancelButton: false,
                 showConfirmButton: false
             })
@@ -188,7 +188,7 @@
                 title: title,
                 text: msg,
                 timer: 1500,
-                footer: 'SIPAKBUTA',
+                footer: 'AGENTAKUTA',
                 showCancelButton: false,
                 showConfirmButton: false
             }).then(function() {
@@ -201,7 +201,7 @@
                 icon: 'error',
                 title: title,
                 text: msg,
-                footer: 'SIPAKBUTA'
+                footer: 'AGENTAKUTA'
             })
         }
     </script>
